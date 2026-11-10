@@ -1,0 +1,235 @@
+/* Cada seção tem sua própria textura, mantendo a paleta do fogo. */
+.favorites,
+.menu-section,
+.about-section,
+.location-section,
+body > footer {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Favoritos: carvão e linhas discretas inspiradas na grelha. */
+.favorites {
+  background-color: #151617;
+  background-image:
+    var(--grain),
+    repeating-linear-gradient(125deg, transparent 0 31px, #e5c8a609 32px 33px),
+    radial-gradient(ellipse at 90% 10%, #99501c24, transparent 62%);
+  background-size: auto, auto, auto;
+  background-position: center;
+}
+
+/* Cardápio: uma pausa clara e lisa entre os fundos com textura. */
+.menu-section {
+  --text: #291b15;
+  --muted: #69594e;
+  --line: #dacebd;
+  color: var(--text);
+  background: #f3ebde;
+  border-color: #dacebd;
+}
+.menu-section .eyebrow {
+  color: #9c3b13;
+}
+.menu-section .product-card {
+  background: #fffaf1;
+  border-color: #dacebd;
+}
+.menu-section .product-card:hover {
+  border-color: #a95025;
+}
+.menu-section .filter-button {
+  border-color: #bcaa94;
+}
+.menu-section .filter-button small {
+  color: #69594e;
+}
+.menu-section .filter-button[aria-pressed="true"] {
+  border-color: var(--accent);
+}
+.menu-section .filter-button[aria-pressed="true"] small {
+  color: #4d2604;
+}
+.menu-section :focus-visible {
+  outline-color: #9c3b13;
+}
+
+/* Sobre: vinho queimado com curvas de calor desenhadas em CSS. */
+.about-section {
+  background-color: #391713;
+  background-image:
+    var(--grain),
+    repeating-radial-gradient(
+      ellipse at 105% 65%,
+      transparent 0 56px,
+      #ffbb7310 57px 58px,
+      transparent 59px 88px
+    ),
+    radial-gradient(ellipse at 0% 65%, #a13e253d, transparent 70%);
+  background-size: auto, auto, auto;
+  background-position: center;
+}
+
+/* Localização: ardósia com uma malha sutil; uma pausa entre os tons quentes. */
+.location-section {
+  background-color: #151d20;
+  background-image:
+    var(--grain), linear-gradient(#a6c4ca08 1px, transparent 1px),
+    linear-gradient(90deg, #a6c4ca08 1px, transparent 1px),
+    radial-gradient(ellipse at 20% 80%, #42616c24, transparent 65%);
+  background-size:
+    auto,
+    48px 48px,
+    48px 48px,
+    auto;
+  background-position: center;
+}
+
+/* Rodapé mais calmo: apenas textura de carvão, sem partículas em movimento. */
+body > footer {
+  background-color: #101113;
+  background-image: var(--grain), linear-gradient(#151d2066, transparent 180px);
+  background-size: auto, auto;
+  background-position: center;
+}
+
+/* A seção clara tem bordas limpas; o degradê continua na localização. */
+.menu-section::before,
+.about-section::before {
+  content: none;
+}
+.location-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 110px;
+  pointer-events: none;
+  z-index: -1;
+}
+.location-section::before {
+  background: linear-gradient(#391713, transparent);
+}
+
+.about-section {
+  --muted: #e7d5c7;
+}
+
+.location-section {
+  --muted: #d2dedf;
+}
+
+.about-copy .text-link {
+  font-size: 16px;
+}
+
+.location-grid .muted {
+  font-size: 14px;
+}
+
+.about-art {
+  background:
+    linear-gradient(150deg, #030504d9 8%, #0305049c 32%, transparent 62%),
+    url("assets/sobre-cheeseburger.webp") calc(50% + 22px) bottom / auto 83% no-repeat,
+    #020403;
+}
+
+.photo-credits {
+  padding-inline-start: 1.25rem;
+  line-height: 1.65;
+}
+
+@media (min-width: 600px) {
+  .product-grid > :last-child:has([data-product="ovonachapa"]) {
+    grid-column: 1 / -1;
+  }
+
+  .product-grid [data-product="ovonachapa"] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .product-grid [data-product="ovonachapa"] .card-photo {
+    height: clamp(210px, 23vw, 290px);
+  }
+
+  .product-grid [data-product="ovonachapa"] .card-body {
+    padding: clamp(22px, 4vw, 60px);
+  }
+}
+
+@media (max-width: 599px) {
+  .product-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .product-grid .product-card > button {
+    display: grid;
+    grid-template-columns: clamp(72px, 23vw, 112px) minmax(0, 1fr);
+  }
+
+  .product-grid .card-photo {
+    height: 100%;
+    min-height: 100px;
+  }
+
+  .product-grid .card-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .product-grid .card-badge {
+    top: auto;
+    bottom: 5px;
+    left: 4px;
+    max-width: calc(100% - 8px);
+    padding: 3px 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .product-grid .card-body {
+    padding: 10px 12px;
+    justify-content: center;
+  }
+
+  .product-grid h3 {
+    font-size: 1.25rem;
+    line-height: 1.05;
+  }
+
+  .product-grid .card-body p {
+    margin: 4px 0 7px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .product-grid .card-bottom {
+    justify-content: flex-end;
+    gap: 9px;
+  }
+
+  .product-grid .card-price {
+    font-size: 0.95rem;
+  }
+
+  .product-grid .add-button {
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+  }
+}
+
+.ticker b { font-family: var(--body); font-size: .86em; margin-inline: .25em; }
+@media (max-width: 699px) {
+  .ticker li:not(:first-child) { display: none; }
+}
+.cart-count:empty { display: none; }
+
+/* A largura fica reservada para a página não saltar ao mostrar a barra. */
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  html { scrollbar-gutter: stable; scrollbar-color: transparent transparent; }
+  html.scroll-edge, html:has(:focus-visible) { scrollbar-color: #b18b65 #211c18; }
+}
