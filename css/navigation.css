@@ -1,0 +1,61 @@
+/* As âncoras consideram a altura real do cabeçalho fixo. */
+:root {
+  --header-height: 79px;
+}
+html {
+  scroll-padding-top: var(--header-height);
+}
+#inicio,
+#cardapio,
+#sobre,
+#localizacao {
+  scroll-margin-top: 0;
+}
+#main-nav {
+  top: 100%;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --header-height: 89px;
+  }
+  .header-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+  .header-inner > .logo {
+    justify-self: start;
+  }
+  .header-actions {
+    justify-self: end;
+  }
+  #main-nav,
+  #main-nav.is-open {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-self: center;
+    top: auto;
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    min-height: clamp(580px, calc(100svh - var(--header-height)), 820px);
+    padding-block: clamp(36px, 6vh, 64px);
+  }
+  .hero-scene {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* Enquadramento das fotografias ilustrativas do catálogo. */
+[data-product="onion"] img {
+  object-position: center 62%;
+}
+[data-product="lemonade"] img {
+  object-position: center 55%;
+}
+[data-product="water"] img {
+  object-position: center;
+}
